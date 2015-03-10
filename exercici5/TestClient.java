@@ -7,10 +7,10 @@ import static org.junit.Assert.*;    // importa una classe static
  
 public class TestClient {
     @Test
-     public void testClientInforme2dies() {
+     public void testClientInforme4dies() {
          // comprova que el constructor Punt() pugui ser cridat
         Client c=new Client("53639767","Joel","65847554");
-        String s="Informe de lloguers del client Joel (53639767)\n\tTata Vista: 90.0e\nImport a pagar: 90.0e\nPunts guanyats: 1\n";
+        String s="Informe de lloguers del client Joel (53639767)\n\tTata Vista: 135.0e\nImport a pagar: 135.0e\nPunts guanyats: 1\n";
         Vehicle vehicleBasic = new Vehicle("Tata", "Vista", Vehicle.BASIC);
         // demostració de construccuó d'un lloguer amb una data
         SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
@@ -20,7 +20,7 @@ public class TestClient {
         }catch(ParseException e){
             System.out.println(e);
         }
-        Lloguer lloguerBasic = new Lloguer(date, 2, vehicleBasic);
+        Lloguer lloguerBasic = new Lloguer(date, 4, vehicleBasic);
         c.afegeix(lloguerBasic);
         assertEquals(s, c.informe());   
     }
