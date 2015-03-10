@@ -78,12 +78,12 @@ public class Client {
                  lloguer.getVehicle().getMarca() +
                  " " +
                  lloguer.getVehicle().getModel() + ": " +
-                 (quantitat * 30) + "€" + "\n";
+                 (quantitat * 30) + "e" + "\n";
              total += quantitat * 30;
         }
      
          // afegeix informació final
-         resultat += "Import a pagar: " + total + "€\n" +
+         resultat += "Import a pagar: " + total + "e\n" +
              "Punts guanyats: " + bonificacions + "\n";
          return resultat;
      }
@@ -136,12 +136,12 @@ public class Client {
                  lloguer.getVehicle().getMarca() +
                  " " +
                  lloguer.getVehicle().getModel() + ": " +
-                 (quantitat * 30) + "€" + "\n","p");
+                 (quantitat * 30) + "e" + "\n","p");
              total += quantitat * 30;
         }
      
          // afegeix informació final
-         resultat += this.htmlElement("Import a pagar: " + total + "€\n" +
+         resultat += this.htmlElement("Import a pagar: " + total + "e\n" +
              "Punts guanyats: " + bonificacions + "\n","p");
          resultat=this.capHTML(resultat);
          resultat=this.peuHTML(resultat);
