@@ -1,0 +1,8 @@
+Exercici 4. Preparant el terreny: proves unitàries
+Com que anirem modificant el codi de manera significativa, voldrem disposar d'algun mecanisme que ens garanteixi que no hem trencat res.
+
+Genera una prova unitària per al mètode Client.informe()
+
+Inclou les proves al control de versions.
+
+Pista: composa els informes a partir dels resultats generats pel teu GestorLloguersLite i després genera la prova unitària de manera que passi si Client.informe() genera el mateix que obtenia GestorLloguersLite [1].

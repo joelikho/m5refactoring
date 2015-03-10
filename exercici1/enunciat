@@ -1,0 +1,4 @@
+Exercici 1. Codificant el Gestor de Lloguers
+A partir del diagrama anterior, fes una proposta de codificació de les classes que hi apareixen.
+
+Assegura't que les propietats que apareixen al diagrama de classes disposen d'accessors adequats. Considera el codi següent per la classe Client com a referència.

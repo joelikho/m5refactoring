@@ -1,0 +1,91 @@
+Exercici 2. El Gestor de Lloguers lite
+Codifica la classe GestorLloguersLite que crei un client amb el teu nom, que disposi de un mínim de tres lloguers, un per cada tipus de vehicle.
+
+Considera el següent snippet com a pista per crear els vehicles i lloguers:
+
+// demostració de construcció d'un vehicle de categoria BASIC
+Vehicle vehicleBasic = new Vehicle("Tata", "Vista", Vehicle.BASIC);
+
+// demostració de construccuó d'un lloguer amb una data
+SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+Date date = dateFormat.parse("2/8/2013");
+Lloguer lloguerBasic = new Lloguer(date, 2, vehicleBasic);
+
+// demostració de formatat d'una data
+System.out.println(dateFormat.format(lloguerBasic.getData()));
+Finalment, implementa un mètode estàtic de GestorLloguersLite que donat un Client, retorni un String que contingui la següent informació:
+
+Client: «nom del client»
+        «nif»
+        «telèfon»
+Lloguers: «num de lloguers del client»
+        1. vehicle: «marca del vehícle del primer lloguer» «model»
+           data d'inici: «data d'inici del lloguer»
+           dies llogats: «nombre de dies llogats»
+        2. «... dades de la resta de lloguers del client»
+Informe de client
+Hem vist que Client.informe() apareix en blanc al codi que ofereix el primer exercici.
+
+El següent diagrama de seqüència ofereix una visió del seu funcionament:
+
+Diagrama inicial de classes
+Suposa que el codi que et trobes d'aquest mètode és el següent:
+
+ 1 public String informe() {
+ 2     double total = 0;
+ 3     int bonificacions = 0;
+ 4     String resultat = "Informe de lloguers del client " +
+ 5         getNom() +
+ 6         " (" + getNif() + ")\n";
+ 7     for (Lloguer lloguer: lloguers) {
+ 8         double quantitat = 0;
+ 9         switch (lloguer.getVehicle().getCategoria()) {
+10             case Vehicle.BASIC:
+11                 quantitat += 3;
+12                 if (lloguer.getDies() > 3) {
+13                     quantitat += (lloguer.getDies() - 3) * 1.5;
+14                 }
+15                 break;
+16             case Vehicle.GENERAL:
+17                 quantitat += 4;
+18                 if (lloguer.getDies() > 2) {
+19                     quantitat += (lloguer.getDies() - 2) * 2.5;
+20                 }
+21                 break;
+22             case Vehicle.LUXE:
+23                 quantitat += lloguer.getDies() * 6;
+24                 break;
+25         }
+26 
+27         // afegeix lloguers freqüents
+28         bonificacions ++;
+29 
+30         // afegeix bonificació per dos dies de lloguer de Luxe
+31         if (lloguer.getVehicle().getCategoria() == Vehicle.LUXE &&
+32                 lloguer.getDies()>1 ) {
+33             bonificacions ++;
+34         }
+35 
+36         // composa els resultats d'aquest lloguer
+37         resultat += "\t" +
+38             lloguer.getVehicle().getMarca() +
+39             " " +
+40             lloguer.getVehicle().getModel() + ": " +
+41             (quantitat * 30) + "€" + "\n";
+42         total += quantitat * 30;
+43     }
+44 
+45     // afegeix informació final
+46     resultat += "Import a pagar: " + total + "€\n" +
+47         "Punts guanyats: " + bonificacions + "\n";
+48     return resultat;
+49 }
+D'aquest codi en podríem dir vàries coses. Probablement no totes maques. El mètode Client.informe() és molt llarg i fa un munt de coses que probablement hauria de fer alguna altra classe. Seria una mena de traducció directa d'un algorisme no orientat a objectes a java. Podríem dir que és un codi lleig.
+
+Amb tot, el codi fa el que s'espera i al compilador no l'importa l'estètica. El problema vindrà quan ens calgui modificar-lo. Imagina que ens demanen que afegim un nou mètode que generi l'informe en format html. No podríem aprofitar pràcticament res del mètode Client.informe() ! D'acord que podem fer un copy&paste i modificar la part de construcció del String de tornada. Què passaria llavors si ens demanen que canviem la lògica del càlcul de l'informe? (ex. canvien política de preu pels vehicles de luxe).
+
+Potser em diràs que el codi no és tan complex després de tot i que no és tan greu haver-lo de reescriure. Si penses així, recorda que aquest és només un exemple senzill, una joguina per introduir el concepte. A la vida real aquest tipus de codi el trobaràs molt més llarg, enrevessat i barrejat amb altre codi del mateix nivell.
+
+Com a regla d'or: si el codi que has de modificar presenta una resistència important als canvis que persegueixes incorporar-li, primer refacció i després introducció de la modificació.
+
+A continuació, seguint diferents passes de refacció, convertirem aquest disseny en quelcom més maco. Com que la millora de qualsevol codi pot ser un procés infinit, ens concentrarem amb l'objectiu d'aconseguir facilitar la implementació del mètode Client.informeHTML().

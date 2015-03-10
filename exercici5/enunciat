@@ -1,0 +1,6 @@
+Exercici 5. Preparant el terreny: ara seriosament, proves unitàries
+En cas que estiguis començant amb les proves unitàries, és molt probable que a l'exercici anterior t'hagis quedat amb una prova senzilla amb un sol cas. Potser fins i tot n'has fet més d'un de cas. Molt més sorprenent serà que hagis fet casos de prova amb una cobertura del 100% del codi a provar (és a dir, proves que provin totes les línies del mètode)
+
+Com que estem d'entrenament, dedica una mica més d'esforç i crea un joc de prova amb cobertura 100% de les línies del mètode Client.informe()
+
+Pista: cap lloguer, un lloguer, més d'un lloguer, lloguer de vehicle general amb un dia, lloguer de general amb 2 dies, etc.
