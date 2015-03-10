@@ -87,4 +87,64 @@ public class Client {
              "Punts guanyats: " + bonificacions + "\n";
          return resultat;
      }
+     public String capHTML(String s){
+        return "<html><head/><body>"+s;
+     }
+     public String peuHTML(String s){
+        return s+"</body></html>";
+     }
+     public String htmlElement(String s, String element){
+        return "<"+element+">"+s+"</"+element+">";
+     }
+     public String informeHTML() {
+         double total = 0;
+         int bonificacions = 0;
+         String resultat = this.htmlElement("Informe de lloguers del client " +
+             getNom() +
+             " (" + getNif() + ")\n","h3");
+         for (Lloguer lloguer: lloguers) {
+             double quantitat = 0;
+             switch (lloguer.getVehicle().getCategoria()) {
+                 case Vehicle.BASIC:
+                     quantitat += 3;
+                     if (lloguer.getDies() > 3) {
+                         quantitat += (lloguer.getDies() - 3) * 1.5;
+                     }
+                     break;
+                 case Vehicle.GENERAL:
+                     quantitat += 4;
+                     if (lloguer.getDies() > 2) {
+                         quantitat += (lloguer.getDies() - 2) * 2.5;
+                     }
+                     break;
+                 case Vehicle.LUXE:
+                     quantitat += lloguer.getDies() * 6;
+                     break;
+             }
+     
+             // afegeix lloguers freqüents
+             bonificacions ++;
+     
+             // afegeix bonificació per dos dies de lloguer de Luxe
+             if (lloguer.getVehicle().getCategoria() == Vehicle.LUXE &&
+                     lloguer.getDies()>1 ) {
+                 bonificacions ++;
+             }
+     
+             // composa els resultats d'aquest lloguer
+             resultat += this.htmlElement("\t" +
+                 lloguer.getVehicle().getMarca() +
+                 " " +
+                 lloguer.getVehicle().getModel() + ": " +
+                 (quantitat * 30) + "€" + "\n","p");
+             total += quantitat * 30;
+        }
+     
+         // afegeix informació final
+         resultat += this.htmlElement("Import a pagar: " + total + "€\n" +
+             "Punts guanyats: " + bonificacions + "\n","p");
+         resultat=this.capHTML(resultat);
+         resultat=this.peuHTML(resultat);
+         return resultat;
+     }
  }
