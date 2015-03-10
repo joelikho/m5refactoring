@@ -1,0 +1,7 @@
+Exercici 6: Quantitat per lloguer
+Implementa el mètode privat Client.quantitatPerLloguer() de manera que el codi resultant continuï passant els jocs de prova.
+
+Atenció: no intentis fer massa. Simplement cal que moguis el bloc del switch a dins del nou mètode, declaris alguna variable on guardar l'import i retornis el seu valor al final.
+
+Fixa't què, donat que el canvi és petit i disposes d'un bon joc de proves, resulta molt fàcil de corregir els errors que ocasionalment puguis haver introduït.
+
