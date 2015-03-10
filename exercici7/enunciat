@@ -1,0 +1,11 @@
+Exercici 7. quantitatPerLloguer() a la classe Lloguer
+Mou el mètode Client.quantitatPerLloguer() a Lloguer.quantitat().
+
+Com sempre, assegura't que els canvis no han trencat res (passa els jocs de prova)
+
+Tingues en compte que:
+
+ara aquest mètode caldrà que accessible des d'una altra classe (visibilitat)
+com que el mètode ara és de Lloguer, el seu nom antic és redundant. Per això es proposa reanomenar-lo a quantitat().
+ara ja no li caldrà rebre el lloguer com a paràmetre. Saps perquè?
+la crida des de Client.informe() serà una mica diferent.
